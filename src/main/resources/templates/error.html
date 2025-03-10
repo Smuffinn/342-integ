@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - Google Contacts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Google Sans', Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #3c4043;
+            padding: 20px;
+        }
+
+        .error-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .error-icon {
+            font-size: 64px;
+            color: #ea4335;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        .error-code {
+            font-size: 24px;
+            color: #ea4335;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .error-message {
+            font-size: 28px;
+            color: #202124;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .error-details {
+            color: #5f6368;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            background: #4285f4;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background: #3367d6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-button i {
+            margin-right: 8px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .error-container {
+                padding: 30px 20px;
+            }
+            
+            .error-message {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <i class="fas fa-exclamation-circle error-icon"></i>
+        <div class="error-code" th:if="${statusCode}" th:text="'Error ' + ${statusCode}">Error</div>
+        <h1 class="error-message" th:text="${errorMessage}">An error occurred</h1>
+        <p class="error-details" th:text="${errorDetails}">We're sorry, but something went wrong.</p>
+        <a href="/" class="back-button">
+            <i class="fas fa-home"></i>
+            Back to Home
+        </a>
+    </div>
+</body>
+</html>
